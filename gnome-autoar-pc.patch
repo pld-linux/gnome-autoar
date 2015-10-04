@@ -1,0 +1,10 @@
+--- gnome-autoar-0300e4b31253779541a6f078ca45bd7a3bd6e7db/gnome-autoar/gnome-autoar-gtk.pc.in.orig	2014-10-14 10:46:45.000000000 +0200
++++ gnome-autoar-0300e4b31253779541a6f078ca45bd7a3bd6e7db/gnome-autoar/gnome-autoar-gtk.pc.in	2015-10-04 08:56:32.631118145 +0200
+@@ -6,6 +6,6 @@
+ Name: gnome-autoar
+ Description: GTK+ widgets for gnome-autoar library
+ Version: @VERSION@
+-Requires: gtk+-3.0
++Requires: gtk+-3.0 gnome-autoar
+ Libs: -L${libdir} -lgnome-autoar-gtk
+ Cflags: -I${includedir}
