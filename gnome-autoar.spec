@@ -1,14 +1,14 @@
 #
 # Conditional build:
 %bcond_without	static_libs	# static libraries
-#
+
 Summary:	Automatic archives creating and extracting library
 Summary(pl.UTF-8):	Biblioteka do automatycznego tworzenia i rozpakowywania archiwów
-Name:		gnome-autoar
-Version:	0.1
 %define	snap	20141015
 %define	gitref	0300e4b31253779541a6f078ca45bd7a3bd6e7db
-Release:	0.%{snap}.1
+Name:		gnome-autoar
+Version:	0.1
+Release:	0.%{snap}.2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://github.com/GNOME/gnome-autoar/archive/%{gitref}/%{name}-%{version}.tar.gz
@@ -111,6 +111,9 @@ Statyczna biblioteka gnome-autoar-gtk.
 Summary:	gnome-autoar API documentation
 Summary(pl.UTF-8):	Dokumentacja API bibliotek gnome-autoar
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 API documentation for gnome-autoar libraries.
