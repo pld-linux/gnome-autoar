@@ -4,15 +4,13 @@
 
 Summary:	Automatic archives creating and extracting library
 Summary(pl.UTF-8):	Biblioteka do automatycznego tworzenia i rozpakowywania archiwów
-%define	snap	20141015
-%define	gitref	0300e4b31253779541a6f078ca45bd7a3bd6e7db
 Name:		gnome-autoar
-Version:	0.1
-Release:	0.%{snap}.2
+Version:	0.1.1
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://github.com/GNOME/gnome-autoar/archive/%{gitref}/%{name}-%{version}.tar.gz
-# Source0-md5:	0257c1286311ce1e5c6a251491a6a7a4
+Source0:	https://download.gnome.org/sources/gnome-autoar/0.1/%{name}-%{version}.tar.xz
+# Source0-md5:	a32ad24cf6de9e00d66683b1273b1489
 Patch0:		%{name}-pc.patch
 URL:		https://github.com/GNOME/gnome-autoar/
 BuildRequires:	autoconf >= 2.68
@@ -22,14 +20,14 @@ BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	gtk+3-devel >= 3.2
 BuildRequires:	gtk-doc >= 1.14
-BuildRequires:	libarchive-devel >= 3.1.0
+BuildRequires:	libarchive-devel >= 3.2.0
 BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	glib2 >= 1:2.36
 Requires:	glib2 >= 1:2.36
-Requires:	libarchive >= 3.1.0
+Requires:	libarchive >= 3.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,7 +46,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki gnome-autoar
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36
-Requires:	libarchive-devel >= 3.1.0
+Requires:	libarchive-devel >= 3.2.0
 
 %description devel
 Header files for gnome-autoar library.
@@ -122,7 +120,7 @@ API documentation for gnome-autoar libraries.
 Dokumentacja API bibliotek gnome-autoar.
 
 %prep
-%setup -q -n %{name}-%{gitref}
+%setup -q
 %patch0 -p1
 
 %build
@@ -164,49 +162,51 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgnome-autoar.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnome-autoar.so.0
+%attr(755,root,root) %{_libdir}/libgnome-autoar-0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnome-autoar-0.so.0
 %{_libdir}/girepository-1.0/GnomeAutoar-0.1.typelib
 %{_datadir}/glib-2.0/schemas/org.gnome.desktop.archives.enums.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.desktop.archives.gschema.xml
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgnome-autoar.so
+%attr(755,root,root) %{_libdir}/libgnome-autoar-0.so
 %{_datadir}/gir-1.0/GnomeAutoar-0.1.gir
-%dir %{_includedir}/gnome-autoar
-%{_includedir}/gnome-autoar/autoar.h
-%{_includedir}/gnome-autoar/autoar-create.h
-%{_includedir}/gnome-autoar/autoar-extract.h
-%{_includedir}/gnome-autoar/autoar-format-filter.h
-%{_includedir}/gnome-autoar/autoar-misc.h
-%{_includedir}/gnome-autoar/autoar-pref.h
-%{_pkgconfigdir}/gnome-autoar.pc
+%dir %{_includedir}/gnome-autoar-0
+%dir %{_includedir}/gnome-autoar-0/gnome-autoar
+%{_includedir}/gnome-autoar-0/gnome-autoar/autoar-compressor.h
+%{_includedir}/gnome-autoar-0/gnome-autoar/autoar-enum-types.h
+%{_includedir}/gnome-autoar-0/gnome-autoar/autoar-extractor.h
+%{_includedir}/gnome-autoar-0/gnome-autoar/autoar-mime-types.h
+%{_includedir}/gnome-autoar-0/gnome-autoar/autoar-format-filter.h
+%{_includedir}/gnome-autoar-0/gnome-autoar/autoar-misc.h
+%{_includedir}/gnome-autoar-0/gnome-autoar/gnome-autoar.h
+%{_pkgconfigdir}/gnome-autoar-0.pc
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libgnome-autoar.a
+%{_libdir}/libgnome-autoar-0.a
 %endif
 
 %files gtk
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgnome-autoar-gtk.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnome-autoar-gtk.so.0
+%attr(755,root,root) %{_libdir}/libgnome-autoar-gtk-0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnome-autoar-gtk-0.so.0
 %{_libdir}/girepository-1.0/GnomeAutoarGtk-0.1.typelib
 
 %files gtk-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgnome-autoar-gtk.so
+%attr(755,root,root) %{_libdir}/libgnome-autoar-gtk-0.so
 %{_datadir}/gir-1.0/GnomeAutoarGtk-0.1.gir
-%{_includedir}/gnome-autoar/autoar-gtk.h
-%{_includedir}/gnome-autoar/autoar-gtk-chooser.h
-%{_pkgconfigdir}/gnome-autoar-gtk.pc
+%{_includedir}/gnome-autoar-0/gnome-autoar/autoar-gtk.h
+%{_includedir}/gnome-autoar-0/gnome-autoar/autoar-gtk-chooser.h
+%{_pkgconfigdir}/gnome-autoar-gtk-0.pc
 
 %if %{with static_libs}
 %files gtk-static
 %defattr(644,root,root,755)
-%{_libdir}/libgnome-autoar-gtk.a
+%{_libdir}/libgnome-autoar-gtk-0.a
 %endif
 
 %files apidocs
