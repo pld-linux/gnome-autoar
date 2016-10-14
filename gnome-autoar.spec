@@ -7,9 +7,9 @@ Summary(pl.UTF-8):	Biblioteka do automatycznego tworzenia i rozpakowywania archi
 Name:		gnome-autoar
 Version:	0.1.1
 Release:	1
-License:	LGPL v2+
+License:	LGPL v2.1+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/gnome-autoar/0.1/%{name}-%{version}.tar.xz
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-autoar/0.1/%{name}-%{version}.tar.xz
 # Source0-md5:	a32ad24cf6de9e00d66683b1273b1489
 Patch0:		%{name}-pc.patch
 URL:		https://github.com/GNOME/gnome-autoar/
@@ -24,6 +24,8 @@ BuildRequires:	libarchive-devel >= 3.2.0
 BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	glib2 >= 1:2.36
 Requires:	glib2 >= 1:2.36
