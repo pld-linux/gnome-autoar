@@ -5,12 +5,12 @@
 Summary:	Automatic archives creating and extracting library
 Summary(pl.UTF-8):	Biblioteka do automatycznego tworzenia i rozpakowywania archiwów
 Name:		gnome-autoar
-Version:	0.1.1
+Version:	0.2.2
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-autoar/0.1/%{name}-%{version}.tar.xz
-# Source0-md5:	a32ad24cf6de9e00d66683b1273b1489
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-autoar/0.2/%{name}-%{version}.tar.xz
+# Source0-md5:	90b4980c96614bcc376af44717deef99
 Patch0:		%{name}-pc.patch
 URL:		https://github.com/GNOME/gnome-autoar/
 BuildRequires:	autoconf >= 2.68
@@ -27,7 +27,6 @@ BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
-Requires(post,postun):	glib2 >= 1:2.36
 Requires:	glib2 >= 1:2.36
 Requires:	libarchive >= 3.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -121,6 +120,23 @@ API documentation for gnome-autoar libraries.
 %description apidocs -l pl.UTF-8
 Dokumentacja API bibliotek gnome-autoar.
 
+%package -n vala-gnome-autoar
+Summary:	gnome-autoar API for Vala language
+Summary(pl.UTF-8):	API gnome-autoar dla języka Vala
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-gtk-devel = %{version}-%{release}
+Requires:	vala >= 2:0.22.0
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
+
+%description -n vala-gnome-autoar
+gnome-autoar API for Vala language.
+
+%description -n vala-gnome-autoar -l pl.UTF-8
+API gnome-autoar dla języka Vala.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -151,13 +167,8 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-/sbin/ldconfig
-%glib_compile_schemas
-
-%postun
-/sbin/ldconfig
-%glib_compile_schemas
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %post	gtk -p /sbin/ldconfig
 %postun	gtk -p /sbin/ldconfig
@@ -167,8 +178,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgnome-autoar-0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnome-autoar-0.so.0
 %{_libdir}/girepository-1.0/GnomeAutoar-0.1.typelib
-%{_datadir}/glib-2.0/schemas/org.gnome.desktop.archives.enums.xml
-%{_datadir}/glib-2.0/schemas/org.gnome.desktop.archives.gschema.xml
 
 %files devel
 %defattr(644,root,root,755)
@@ -214,3 +223,8 @@ rm -rf $RPM_BUILD_ROOT
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/gnome-autoar
+
+%files -n vala-gnome-autoar
+%defattr(644,root,root,755)
+%{_datadir}/vala/vapi/gnome-autoar-0.vapi
+%{_datadir}/vala/vapi/gnome-autoar-gtk-0.vapi
