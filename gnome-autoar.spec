@@ -25,6 +25,7 @@ BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	vala >= 2:0.22.0
 BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
 Requires:	glib2 >= 1:2.36
