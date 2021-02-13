@@ -5,12 +5,12 @@
 Summary:	Automatic archives creating and extracting library
 Summary(pl.UTF-8):	Biblioteka do automatycznego tworzenia i rozpakowywania archiwów
 Name:		gnome-autoar
-Version:	0.2.4
+Version:	0.3.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-autoar/0.2/%{name}-%{version}.tar.xz
-# Source0-md5:	36ab263f477eeee3c95c9381766eb3c2
+Source0:	https://download.gnome.org/sources/gnome-autoar/0.3/%{name}-%{version}.tar.xz
+# Source0-md5:	05d9807232d524b2a233317d717cf645
 Patch0:		%{name}-pc.patch
 URL:		https://github.com/GNOME/gnome-autoar/
 BuildRequires:	autoconf >= 2.68
@@ -22,7 +22,7 @@ BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	libarchive-devel >= 3.2.0
 BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.592
+BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala >= 2:0.22.0
 BuildRequires:	xz
@@ -110,9 +110,7 @@ Statyczna biblioteka gnome-autoar-gtk.
 Summary:	gnome-autoar API documentation
 Summary(pl.UTF-8):	Dokumentacja API bibliotek gnome-autoar
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description apidocs
 API documentation for gnome-autoar libraries.
@@ -127,9 +125,7 @@ Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	%{name}-gtk-devel = %{version}-%{release}
 Requires:	vala >= 2:0.22.0
-%if "%{_rpmversion}" >= "5"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description -n vala-gnome-autoar
 gnome-autoar API for Vala language.
