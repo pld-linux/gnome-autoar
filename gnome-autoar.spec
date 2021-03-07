@@ -110,7 +110,7 @@ Statyczna biblioteka gnome-autoar-gtk.
 Summary:	gnome-autoar API documentation
 Summary(pl.UTF-8):	Dokumentacja API bibliotek gnome-autoar
 Group:		Documentation
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description apidocs
 API documentation for gnome-autoar libraries.
@@ -125,7 +125,7 @@ Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	%{name}-gtk-devel = %{version}-%{release}
 Requires:	vala >= 2:0.22.0
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description -n vala-gnome-autoar
 gnome-autoar API for Vala language.
