@@ -5,12 +5,12 @@
 Summary:	Automatic archives creating and extracting library
 Summary(pl.UTF-8):	Biblioteka do automatycznego tworzenia i rozpakowywania archiwów
 Name:		gnome-autoar
-Version:	0.3.1
+Version:	0.3.2
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/gnome-autoar/0.3/%{name}-%{version}.tar.xz
-# Source0-md5:	3149496d0189623a8e1289bbab4d8385
+# Source0-md5:	3c8da1a8489255f2aaa5fdb690308e5d
 Patch0:		%{name}-pc.patch
 URL:		https://github.com/GNOME/gnome-autoar/
 BuildRequires:	autoconf >= 2.68
