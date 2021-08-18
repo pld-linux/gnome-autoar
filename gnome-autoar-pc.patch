@@ -1,10 +1,11 @@
---- gnome-autoar-0300e4b31253779541a6f078ca45bd7a3bd6e7db/gnome-autoar/gnome-autoar-gtk.pc.in.orig	2014-10-14 10:46:45.000000000 +0200
-+++ gnome-autoar-0300e4b31253779541a6f078ca45bd7a3bd6e7db/gnome-autoar/gnome-autoar-gtk.pc.in	2015-10-04 08:56:32.631118145 +0200
-@@ -6,6 +6,6 @@
- Name: gnome-autoar
- Description: GTK+ widgets for gnome-autoar library
- Version: @VERSION@
--Requires: gtk+-3.0
-+Requires: gtk+-3.0 gnome-autoar-0
- Libs: -L${libdir} -lgnome-autoar-gtk-@LIBGNOME_AUTOAR_API_VERSION@
- Cflags: -I${includedir}/gnome-autoar-@LIBGNOME_AUTOAR_API_VERSION@
+--- gnome-autoar-0.4.0/gnome-autoar/meson.build.orig	2021-08-18 21:21:11.379734786 +0200
++++ gnome-autoar-0.4.0/gnome-autoar/meson.build	2021-08-18 21:28:23.287394942 +0200
+@@ -141,7 +141,7 @@ pkg.generate(
+   description: 'GTK+ widgets for gnome-autoar library',
+   filebase: libname_gtk,
+   subdirs: libname,
+-  requires: deps,
++  requires: deps + [libgnome_autoar],
+   variables: 'exec_prefix=${prefix}',
+ )
+ 
