@@ -234,6 +234,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/vala/vapi/gnome-autoar-gtk-0.deps
 %{_datadir}/vala/vapi/gnome-autoar-gtk-0.vapi
 
+%if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/gnome-autoar
+%endif
