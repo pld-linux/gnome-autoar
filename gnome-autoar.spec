@@ -150,7 +150,7 @@ Dokumentacja API bibliotek gnome-autoar.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %if %{with static_libs}
 %{__sed} -i -e '/^libgnome_autoar\(_gtk\)\? =/ s/shared_library/library/' gnome-autoar/meson.build
